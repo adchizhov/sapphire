@@ -3,11 +3,10 @@
 Programming Assignment Task (this is a secret for which company!)
 
 ### How to run
-**Simple way** -> You will need `docker` and `docker-compose` to run this app simple way, just type in project root `make image run`  
+**Simple way** -> You will need `docker` and `docker-compose`, to run this app simple way just type in project root `make image run` 
 and visit `0.0.0.0:8000` in browser after it built  
 
-Harder way (_Is not advised_) -> make virtualenv, install postgres with postgis + geos, install requirements.txt, setup database and fill `.env` accordingly,  
-run `python manage.py runserver`  
+Harder way (_it is not advised_) -> make virtualenv, install postgres with postgis + geos, install requirements.txt, setup database and fill `.env` accordingly, run `python manage.py runserver`  
 
 ### Project structure
 `build` - docker etc. related stuff and scripts (such as wait_for_postgres.py), `run.sh` as entrypoint to run app via docker
