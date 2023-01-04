@@ -1,0 +1,50 @@
+[
+{
+  "model": "points.point",
+  "pk": 1,
+  "fields": {
+    "title": "Shelter 2",
+    "description": "Shelter 2",
+    "geom": "SRID=4326;POINT (34.47235107421876 31.70947636001931)",
+    "created_at": "2023-01-04T01:12:27.823Z",
+    "updated_at": "2023-01-04T01:37:50.192Z",
+    "category": 2
+  }
+},
+{
+  "model": "points.point",
+  "pk": 2,
+  "fields": {
+    "title": "Hazard",
+    "description": "Hazard",
+    "geom": "SRID=4326;POINT (34.43389892578125 31.7375111256878)",
+    "created_at": "2023-01-04T01:12:42.599Z",
+    "updated_at": "2023-01-04T01:38:09.938Z",
+    "category": 1
+  }
+},
+{
+  "model": "points.point",
+  "pk": 3,
+  "fields": {
+    "title": "Shelter",
+    "description": "Shelter",
+    "geom": "SRID=4326;POINT (34.6124267578125 31.61128794539506)",
+    "created_at": "2023-01-04T01:37:35.676Z",
+    "updated_at": "2023-01-04T01:37:35.676Z",
+    "category": 2
+  }
+},
+{
+  "model": "points.point",
+  "pk": 4,
+  "fields": {
+    "title": "Hazard 2",
+    "description": "Hazard 2",
+    "geom": "SRID=4326;POINT (34.37072753906251 31.6674083170809)",
+    "created_at": "2023-01-04T01:38:23.634Z",
+    "updated_at": "2023-01-04T01:38:23.634Z",
+    "category": 1
+  }
+}
+]

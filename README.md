@@ -10,10 +10,20 @@ Harder way (_Is not advised_) -> make virtualenv, install postgres with postgis 
 run `python manage.py runserver`  
 
 ### Project structure
-`build` - docker etc. related stuff and scripts (such as wait_for_postgres.py), `run.sh` as entrypoint to run app via docker  
-`data` - initial sites.json  
-`points` - points app (with Point & PointCategory models), Hazard is a PointCategory, lets not hardcode Point as Hazard  
+`build` - docker etc. related stuff and scripts (such as wait_for_postgres.py), `run.sh` as entrypoint to run app via docker
+```shell
+#!/bin/sh
+python -m build.wait_for_postgres &&  # wait until postgres (with postgis is up)
+python manage.py migrate &&  # run migrate
+python manage.py collectstatic --no-input --clear &&  # collect static -> it is served via whitenoise
+python manage.py fill_initial_data --from-gist &&  # fill database with sites
+python manage.py loaddata fixtures/points.json --app points.point &&  # fill database 2 Hazard and 2 Shelter points
+gunicorn sapphire.wsgi:application --workers=1 --bind 0.0.0.0:8000;  # fire up the service
+```
+`fixtures` - initial sites.json from home assignment file and points.json as fixtures  
+`points` - points app (with Point & PointCategory models), Hazard is a PointCategory, why limit yourself to one point type, it could be not only `Hazard`, but also a `Shelter` or any other!  
 `sapphire` - project root app with settings  
+`screenshots` - assets for README.md 
 `sites` - sites app  
 `static` - css, js, assets...  
 `templates` - common templates, contains 404.html, 500.html and base.html template  
@@ -49,3 +59,7 @@ POSTGRES_HOST=postgis
 `requests` - used in `fill_initial_data` management command to request `sites.json`  
 `whitenoise` - simplified static file serving
 `gunicorn` - wsgi app server to run application
+
+### ETC
+I decided to add different types of points, there are not only Hazard points, but Shelter points also
+![Hazards and shelters](screenshots/hazards_and_shelters.png?raw=true "Hazards and shelters")

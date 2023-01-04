@@ -11,5 +11,5 @@ run:
 	docker-compose -f ./build/docker-compose.yml up web
 
 clean:
-	docker-compose -f ./build/docker-compose.yml down
+	docker-compose -f ./build/docker-compose.yml down -v
 	docker-compose -f ./build/docker-compose.yml rm -s -v -f

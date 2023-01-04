@@ -1,6 +1,9 @@
 import socket
 import time
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def wait_for_postgres():
@@ -15,7 +18,9 @@ def wait_for_postgres():
             s.close()
             break
         except socket.error as ex:
-            time.sleep(0.1)
+            logger.info('Waiting for postgres')
+            time.sleep(1)
+
 
 
 if __name__ == '__main__':

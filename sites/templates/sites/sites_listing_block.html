@@ -13,7 +13,7 @@
             <tr>
                 <th scope="row">{{ site.id }}</th>
                 <td>{{ site.title }}</td>
-                <td>{{ site.points_within_site.count }}</td>
+                <td>{{ site.all_points_within.count }}</td>
                 <td><a href="{{ site.get_absolute_url }}"><button class="btn btn-outline-info" type="button">view</button></a></td>
             </tr>
         {% endfor %}

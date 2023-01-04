@@ -7,12 +7,13 @@ def forwards_func(apps, schema_editor):
     PointCategory = apps.get_model("points", "PointCategory")
     db_alias = schema_editor.connection.alias
     PointCategory.objects.using(db_alias).create(name='Hazard')
+    PointCategory.objects.using(db_alias).create(name='Shelter')
 
 
 def reverse_func(apps, schema_editor):
     PointCategory = apps.get_model("points", "PointCategory")
     db_alias = schema_editor.connection.alias
-    PointCategory.objects.using(db_alias).filter(name='Hazard').delete()
+    PointCategory.objects.using(db_alias).filter(name__in=['Hazard', 'Shelter']).delete()
 
 
 class Migration(migrations.Migration):

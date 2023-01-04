@@ -45,7 +45,7 @@ class Command(BaseCommand):
                 sys.exit(1)
             data = response.json()
         else:
-            source_path = os.path.join(settings.BASE_DIR, 'data', 'sites.json')
+            source_path = os.path.join(settings.BASE_DIR, 'fixtures', 'sites.json')
             logger.info(f'Parsing sites.json from {source_path}')
             with open(source_path, 'r') as source_file:
                 data = json.loads(source_file.read())

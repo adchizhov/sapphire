@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib.gis.db import models
 from django.urls import reverse
 
+from points.models import Point
+
 
 class Site(models.Model):
     title = models.CharField('title', max_length=100)
@@ -16,12 +18,27 @@ class Site(models.Model):
         return f'{self.title} with id: {self.pk}'
 
     @property
-    def points_within_site(self):
+    def hazard_points(self):
+        """
+        Get Hazard points within site
+        :return:
+        """
+        return Point.objects.filter(geom__within=self.polygon, category__name='Hazard')
+
+    @property
+    def shelter_points(self):
+        """
+        Get Shelter points within site
+        :return:
+        """
+        return Point.objects.filter(geom__within=self.polygon, category__name='Shelter')
+
+    @property
+    def all_points_within(self):
         """
         Get all points within site
         :return:
         """
-        from points.models import Point  # deals with cross import
         return Point.objects.filter(geom__within=self.polygon)
 
     def get_absolute_url(self):
