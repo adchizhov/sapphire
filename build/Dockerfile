@@ -1,5 +1,6 @@
 FROM python:3.8
 
+ENV PYTHONUNBUFFERED=1
 RUN apt-get update &&\
     apt-get install -y binutils libproj-dev gdal-bin python3-gdal
 ADD ./requirements.txt /app/requirements.txt
