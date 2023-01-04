@@ -2,6 +2,9 @@
 {% load humanize %}
 {% block content %}
     <div class="row">
+        <div class="col-12 text-center m-2">
+            {{ object }}
+        </div>
         <div class="col-12 text-left m-2">
             <div>Title: {{ object.title }}</div>
             <div>Category: {{ object.category }}</div>

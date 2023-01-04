@@ -39,7 +39,7 @@ class Point(models.Model):
         ]
 
     def __str__(self):
-        return f'{self.title} with id: {self.pk}'
+        return f'{self.category.name} point: {self.title} with pk <{self.pk}>'
 
     @property
     def popup_info(self):

@@ -15,7 +15,7 @@ class Site(models.Model):
         ]
 
     def __str__(self):
-        return f'{self.title} with id: {self.pk}'
+        return f'Site: {self.title} with pk <{self.pk}>'
 
     @property
     def hazard_points(self):
