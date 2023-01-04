@@ -10,3 +10,4 @@ venv
 *__pycache__/
 *.iml
 .pytest_cache/
+collected_static/
