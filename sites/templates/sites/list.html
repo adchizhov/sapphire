@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if current_search_value %}
+        <div class="row">
+            <div class="col-12 text-left m-2">
+                Your current search: {{ request.GET.title_q }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-12 text-left m-2">
+            Available sites:
+        </div>
+    </div>
+    {% if page_obj %}
+        {% include "sites/sites_listing_block.html" with sites=page_obj %}
+        <nav aria-label="page navigation">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ page_obj.previous_page_number }}{{ current_search_value }}">Previous</a>
+                    </li>
+                {% endif %}
+                <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }}
+                    of {{ page_obj.paginator.num_pages }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{{ current_search_value }}">Next</a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ page_obj.paginator.num_pages }}{{ current_search_value }}">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% else %}
+        <div class="row">
+            <div class="col-12 text-left">
+                There's no such thing as nothing. In every nothing, there's a something. In fact, there could be
+                everything!
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+

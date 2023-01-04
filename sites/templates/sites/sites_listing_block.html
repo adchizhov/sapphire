@@ -1,0 +1,22 @@
+{% if sites %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">POINTS WITHIN</th>
+            <th scope="col">ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for site in sites %}
+            <tr>
+                <th scope="row">{{ site.id }}</th>
+                <td>{{ site.title }}</td>
+                <td>{{ site.points_within_site.count }}</td>
+                <td><a href="{{ site.get_absolute_url }}"><button class="btn btn-outline-info" type="button">view</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

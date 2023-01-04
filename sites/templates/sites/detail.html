@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load geojson_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-center m-2">
+            {{ object.title }}
+        </div>
+        <div class="col-12 text-center m-2">
+            <a href="{% url 'points:create' %}">
+                <button class="btn btn-secondary">Add point</button>
+            </a>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script>
+        let map = L.map('map');
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        let polygon = L.geoJSON({{ object.polygon|geojsonfeature|safe}}).addTo(map);
+        let collection = {{ object.points_within_site|geojsonfeature:"popup_info"|safe }};
+
+        function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.popup_info) {
+                layer.bindPopup(feature.properties.popup_info);
+            }
+        }
+
+        L.geoJson(collection, {onEachFeature: onEachFeature}).addTo(map);
+        map.fitBounds(polygon.getBounds());
+    </script>
+{% endblock %}

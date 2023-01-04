@@ -1,0 +1,12 @@
+*.swo
+*.swp
+*.pyc
+*.pyo
+*.log
+*.lock
+.idea
+.venv
+venv
+*__pycache__/
+*.iml
+.pytest_cache/

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-left m-2">
+            <div>Title: {{ object.title }}</div>
+            <div>Category: {{ object.category }}</div>
+            <div>Description: {{ object.description }}</div>
+            <div>Created at: {{ object.created_at|naturaltime }}</div>
+            <div>Updated at: {{ object.updated_at }}</div>
+            <div><a class="btn btn-primary" href="{{ object.get_edit_url }}" role="button">Edit point</a></div>
+        </div>
+        <div>
+            {% if object.found_in_sites %}
+                <div class="col-12 text-left m-2">
+                    <div>List of sites that contains this point:</div>
+                </div>
+                {% include "sites/sites_listing_block.html" with sites=object.found_in_sites %}
+            {% else %}
+                <div>This point does not occur in any of the sites polygons.</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
