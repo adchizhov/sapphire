@@ -18,22 +18,6 @@ class Site(models.Model):
         return f'Site: {self.title} with pk <{self.pk}>'
 
     @property
-    def hazard_points(self):
-        """
-        Get Hazard points within site
-        :return:
-        """
-        return Point.objects.filter(geom__within=self.polygon, category__name='Hazard')
-
-    @property
-    def shelter_points(self):
-        """
-        Get Shelter points within site
-        :return:
-        """
-        return Point.objects.filter(geom__within=self.polygon, category__name='Shelter')
-
-    @property
     def all_points_within(self):
         """
         Get all points within site
